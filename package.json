@@ -1,0 +1,74 @@
+{
+  "name": "code-statistics",
+  "displayName": "代码统计器",
+  "description": "智能代码统计器，分析你的项目规模和结构",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": ["Other"],
+  "keywords": ["statistics", "analysis", "code", "lines", "files"],
+  "activationEvents": [
+    "onCommand:code-statistics.analyze",
+    "onCommand:code-statistics.showReport",
+    "onCommand:code-statistics.toggleStatusBar"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "code-statistics.analyze",
+        "title": "分析代码统计",
+        "category": "统计",
+        "icon": "$(graph)"
+      },
+      {
+        "command": "code-statistics.showReport",
+        "title": "显示统计报告",
+        "category": "统计",
+        "icon": "$(report)"
+      },
+      {
+        "command": "code-statistics.toggleStatusBar",
+        "title": "切换状态栏显示",
+        "category": "统计"
+      }
+    ],
+    "configuration": {
+      "title": "代码统计器",
+      "properties": {
+        "code-statistics.excludePatterns": {
+          "type": "array",
+          "default": ["node_modules", ".git", "dist", "build", "*.min.js"],
+          "description": "排除的文件和目录模式",
+          "items": {
+            "type": "string"
+          }
+        },
+        "code-statistics.includedFileTypes": {
+          "type": "array", 
+          "default": ["js", "ts", "jsx", "tsx", "vue", "py", "java", "cs", "cpp", "c", "h"],
+          "description": "包含的文件类型",
+          "items": {
+            "type": "string"
+          }
+        },
+        "code-statistics.showInStatusBar": {
+          "type": "boolean",
+          "default": true,
+          "description": "是否在状态栏显示统计信息"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.60.0",
+    "@types/node": "14.x",
+    "typescript": "^4.4.4"
+  }
+} 
